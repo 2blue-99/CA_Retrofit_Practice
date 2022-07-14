@@ -21,3 +21,5 @@ data class CoinInfo(
     @SerializedName("type")
     val type: String
 )
+
+
