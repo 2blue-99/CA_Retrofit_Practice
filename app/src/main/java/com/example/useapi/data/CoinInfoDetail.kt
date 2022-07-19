@@ -1,6 +1,7 @@
 package com.example.useapi.data
-
 import com.example.useapi.data.coin_detail.*
+import com.example.useapi.domain.DomainDetail
+import com.example.useapi.domain.DomainDetailTeam
 import com.google.gson.annotations.SerializedName
 
 data class CoinInfoDetail(
@@ -41,3 +42,22 @@ data class CoinInfoDetail(
     @SerializedName("whitepaper")
     val whitePaper: WhitePaper
 )
+
+fun CoinInfoDetail.toDomainCoinDetail(): DomainDetail {
+    return DomainDetail(
+        coinId = id,
+        name = name,
+        description = description,
+        symbol = symbol,
+        rank = rank,
+        isActive = isActive,
+        tags = tags.map { name },
+        team = team.map { it.toDomainTeam() }
+    )
+}
+
+fun Team.toDomainTeam(): DomainDetailTeam {
+    return DomainDetailTeam(
+        id, name, position
+    )
+}

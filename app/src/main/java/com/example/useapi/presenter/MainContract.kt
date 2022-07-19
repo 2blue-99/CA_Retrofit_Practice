@@ -10,9 +10,10 @@ interface MainContract {
 
     interface Presenter {
         suspend fun getData() : List<CoinsModel>
-        fun creat()
-        fun read()
-        fun update()
+        suspend fun getDetail(id: String) : CoinsDetail
+//        fun creat()
+//        fun read()
+//        fun update()
         //요청 +  받아오기
     }
 }

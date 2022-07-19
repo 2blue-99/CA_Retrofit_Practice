@@ -11,6 +11,9 @@ import com.example.useapi.presenter.MainContract
 import com.example.useapi.presenter.MainPresenter
 import com.example.useapi.recycler.recyclerAdapter
 import com.example.useapi.recycler.recyclerData
+import kotlinx.android.synthetic.main.activity_main.view.*
+import kotlinx.android.synthetic.main.fragment_detail.view.*
+import kotlinx.android.synthetic.main.fragment_recycler.view.*
 import kotlinx.android.synthetic.main.item_list.view.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -28,49 +31,84 @@ class MainActivity :FragmentActivity(), MainContract.View {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        setFragment()
+
         val mainPresenter = MainPresenter()
 
-        CoroutineScope(Dispatchers.IO).launch {
-            var arrayData = mainPresenter.getData()
-            with(recyclerData) {
-                for (i in arrayData.indices) {
-                    add(recyclerData("${i + 1}", "${arrayData[i].name}", arrayData[i].id))
-                }
-                println(recyclerData)
+//        CoroutineScope(Dispatchers.IO).launch {
+//            var arrayData = mainPresenter.getData()
+//            with(recyclerData) {
+//                for (i in arrayData.indices) {
+//                    add(recyclerData("${i + 1}", "${arrayData[i].name}", arrayData[i].id))
+//                }
+//            }
+//            runOnUiThread{initRecyclerView()}
+//        }
+    }
+
+    fun setFragment(){
+        val transactionRecycler = supportFragmentManager.beginTransaction()
+            .add(R.id.fragment, FragmentRecycler())
+        transactionRecycler.commit()
+    }
+
+    fun changeFragment(index: Int, id: String = ""){
+        when(index){
+            1 -> {
+                supportFragmentManager
+                    .beginTransaction()
+                    .replace(R.id.fragment, FragmentRecycler())
+                    .commit()
             }
-            runOnUiThread{initRecyclerView()}
+
+            2 -> {
+                val myData = Bundle()
+                myData.putString("id", id)
+                println("main id : $id")
+
+                val FragmentDetaieA = FragmentDetail()
+                FragmentDetaieA.arguments = myData
+
+                val transactionDetail = supportFragmentManager.beginTransaction()
+                transactionDetail.replace(R.id.fragment, FragmentDetaieA)
+                transactionDetail.commit()
+            }
         }
     }
+//    fun dataClick(view: View) {
+//        binding.fragment.star.textColors
+//        println("dataClick")
+//
+//        val myData = Bundle()
+//        myData.putString("id", "${recyclerData[view.textView6.text.toString().toInt()-1].id}")
+//
+//        val FragmentDetaieA = FragmentDetail()
+//        FragmentDetaieA.arguments = myData
+//
+//        val transactionDetail = supportFragmentManager.beginTransaction()
+//        transactionDetail.replace(R.id.fragment, FragmentDetaieA)
+//        transactionDetail.commit()
+//    }
+//
+    fun backBtn(view: View) {
+    changeFragment(1)
+}
+//        val transactionRecycler = supportFragmentManager.beginTransaction()
+//            .replace(R.id.fragment, FragmentRecycler())
+//        transactionRecycler.commit()
+//
+//        val mainPresenter = MainPresenter()
+//
+//        CoroutineScope(Dispatchers.IO).launch {
+//            var arrayData = mainPresenter.getData()
+//            with(recyclerData) {
+//                for (i in arrayData.indices) {
+//                    add(recyclerData("${i + 1}", "${arrayData[i].name}", arrayData[i].id))
+//                }
+//                println(recyclerData)
+//            }
+//            runOnUiThread{initRecyclerView()}
+//        }
 
-    fun initRecyclerView(){
-        val adapter= recyclerAdapter() //어댑터 객체 만듦
-        adapter.datalist = recyclerData //데이터 넣어줌
-        binding.recyclerView.adapter = adapter //리사이클러뷰에 어댑터 연결
-        binding.recyclerView.layoutManager= LinearLayoutManager(this) //레이아웃 매니저 연결
-    }
 
-    fun dataClick(view: View) {
-
-        val fragment1 = SubFragment()
-        supportFragmentManager.beginTransaction().add(R.id.fragment, fragment1).commit()
-
-
-
-        println("check")
-//        val fragment = SubFragment()
-//        supportFragmentManager.beginTransaction().add(R.id.fragment, fragment).commit()
-//        println("view.context ${view.context}")
-//        println("id ${view.id}")
-//        println("textAlignment ${view.textAlignment}")
-//        println("textDirection ${view.textDirection}")
-//        println("@@@ ${view.textView6.text}")
-//        println("@@@ ${view.textView7.text}")
-//        println("@@@ ${recyclerData[view.textAlignment].id}")
-//        val intent = Intent(this, SubFragment::class.java)
-//        intent.putExtra("data","${recyclerData[view.textAlignment].id}")
-//        startActivity(intent)
-//        val _Fragement = supportFragmentManager.beginTransaction()
-//        _Fragement.add(SubFragment)
-
-    }
 }

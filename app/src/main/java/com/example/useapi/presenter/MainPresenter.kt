@@ -11,17 +11,21 @@ class MainPresenter : MainContract.Presenter{
         return CoinsUseCase().getData()
     }
 
-    override fun creat() {
-        TODO("Not yet implemented")
+    override suspend fun getDetail(id: String): CoinsDetail {
+        return CoinsUseCase().getDetail(id)
     }
 
-    override fun read() {
-        TODO("Not yet implemented")
-    }
-
-    override fun update() {
-        TODO("Not yet implemented")
-    }
+//    override fun create() {
+//        TODO("Not yet implemented")
+//    }
+//
+//    override fun read() {
+//        TODO("Not yet implemented")
+//    }
+//
+//    override fun update() {
+//        TODO("Not yet implemented")
+//    }
 
 
 }

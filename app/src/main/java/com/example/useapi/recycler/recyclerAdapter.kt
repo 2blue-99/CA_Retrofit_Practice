@@ -1,12 +1,15 @@
 package com.example.useapi.recycler
 
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.useapi.databinding.ItemListBinding
 
 
-class recyclerAdapter: RecyclerView.Adapter<recyclerAdapter.MyViewHolder>() {
+class recyclerAdapter(
+    val clickItem: (String) -> Unit
+): RecyclerView.Adapter<recyclerAdapter.MyViewHolder>() {
 
     var datalist = mutableListOf<recyclerData>()//리사이클러뷰에서 사용할 데이터 미리 정의 -> 나중에 MainActivity등에서 datalist에 실제 데이터 추가
 
@@ -15,8 +18,11 @@ class recyclerAdapter: RecyclerView.Adapter<recyclerAdapter.MyViewHolder>() {
         //binding전달받았기 때문에 홀더 내부 어디에서나 binding 사용가능
         fun bind(data: recyclerData){
             //binding.dogPhotoImg.=dogData.dog_img
-            binding.textView6.text= data.num +"."
+            binding.textView6.text= data.num
             binding.textView7.text= data.name
+            binding.recyclerViewBack.setOnClickListener{
+                clickItem(data.id.toString())
+            }
         }
     }
 

@@ -3,8 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/PC01/Desktop/useAPI/app/src/main/res/layout/activity_main.xml" value="0.2133676092544987" />
+        <entry key="..\:/Users/PC01/Desktop/useAPI/app/src/main/res/layout/activity_main.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/PC01/Desktop/useAPI/app/src/main/res/layout/activity_sub.xml" value="0.36614583333333334" />
+        <entry key="..\:/Users/PC01/Desktop/useAPI/app/src/main/res/layout/fragment_a.xml" value="0.19270833333333334" />
+        <entry key="..\:/Users/PC01/Desktop/useAPI/app/src/main/res/layout/fragment_detail.xml" value="0.3341902313624679" />
+        <entry key="..\:/Users/PC01/Desktop/useAPI/app/src/main/res/layout/fragment_recycler.xml" value="0.1" />
         <entry key="..\:/Users/PC01/Desktop/useAPI/app/src/main/res/layout/fragment_sub.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/PC01/Desktop/useAPI/app/src/main/res/layout/item_list.xml" value="0.3605128205128205" />
         <entry key="..\:/Users/PC01/Desktop/useAPI/app/src/main/res/xml/network_security_config.xml" value="0.1" />
